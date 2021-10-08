@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/MKUtils/__init__.py
+src/MKUtils.egg-info/PKG-INFO
+src/MKUtils.egg-info/SOURCES.txt
+src/MKUtils.egg-info/dependency_links.txt
+src/MKUtils.egg-info/not-zip-safe
+src/MKUtils.egg-info/requires.txt
+src/MKUtils.egg-info/top_level.txt

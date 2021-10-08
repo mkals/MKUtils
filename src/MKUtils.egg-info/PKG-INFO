@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: MKUtils
+Version: 1.0.0
+Summary: Python utility functions for common tasks.
+Home-page: UNKNOWN
+Author: Morten Kals
+License: UNKNOWN
+Platform: unix
+Platform: linux
+Platform: osx
+Platform: cygwin
+Platform: win32
+Classifier: Origramming Language :: Python :: 3.9
+Classifier: Origramming Language :: Python :: 3.8
+Classifier: Origramming Language :: Python :: 3.7
+Classifier: Origramming Language :: Python :: 3.6
+Classifier: Origramming Language :: Python :: 3 :: Only
+Classifier: Origramming Language :: Python :: 3
+Requires-Python: >=3.6
+Provides-Extra: testing
+
+UNKNOWN
+
