@@ -7,13 +7,23 @@ SCRIPT_DIRECTORY = os.path.dirname(__file__)  # absolute dir the script is in
 WORKING_DIRECTORY = os.getcwd()
 
 def append_to_file(file, l):
-	with open(file, "a") as f: # append mode
-		f.write(f'{l}\n')
+    with open(file, "a") as f: # append mode
+        f.write(f'{l}\n')
 
-def generate_directory(directory):
-	if not os.path.exists(directory):
-		os.makedirs(directory)
+def generate_directory(directory, clear=False):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    if clear:
+        for f in os.lsitdir(directory):
+            try:
+                os.remove(f)
+            except:
+                logging.exception(f'Could not remove file {f}.')
 
+def generate_directories(directories, clear=False):
+    for d in directories:
+        generate_directory(directory=d, clear=clear)
 
 '''
 Convenience method for setting up logger. 
