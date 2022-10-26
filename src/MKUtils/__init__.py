@@ -10,16 +10,18 @@ def append_to_file(file, l):
     with open(file, "a") as f: # append mode
         f.write(f'{l}\n')
 
+def clear_directory(directory):
+    for f in os.listdir(directory):
+        try:
+            os.remove(os.path.join(directory, f))
+        except:
+            logging.exception(f'Could not remove file {f}.')
+
 def generate_directory(directory, clear=False):
     if not os.path.exists(directory):
         os.makedirs(directory)
     
-    if clear:
-        for f in os.listdir(directory):
-            try:
-                os.remove(f)
-            except:
-                logging.exception(f'Could not remove file {f}.')
+    if clear: clear_directory(directory=directory)
 
 def generate_directories(directories, clear=False):
     for d in directories:
