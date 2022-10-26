@@ -15,7 +15,7 @@ def generate_directory(directory, clear=False):
         os.makedirs(directory)
     
     if clear:
-        for f in os.lsitdir(directory):
+        for f in os.listdir(directory):
             try:
                 os.remove(f)
             except:
