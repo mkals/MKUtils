@@ -32,8 +32,8 @@ Convenience method for setting up logger.
 Must be called before logging is tarted.
 Must be called again from pools in muiltiprocessing module, works fine to have all write to same file.
 '''
-def configure_logger(dir: str, filename: str, label: str, file_mode: str, file_level: str = 'DEBUG', stream_level: str = 'INFO'):
-    file_handler = logging.FileHandler(os.path.join(dir, filename), mode=file_mode)
+def configure_logger(filepath: str, label: str, file_mode: str, file_level: str = 'DEBUG', stream_level: str = 'INFO'):
+    file_handler = logging.FileHandler(filepath, mode=file_mode)
     file_handler.setLevel(file_level)
     
     stream_handler = logging.StreamHandler()
