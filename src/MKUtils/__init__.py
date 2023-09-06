@@ -27,6 +27,32 @@ def generate_directories(directories, clear=False):
     for d in directories:
         generate_directory(directory=d, clear=clear)
 
+
+def join_and_make_path(*path_components: str, clear: bool = False) -> str:
+    """
+    Joins path components and ensures that the directory for the given path exists.
+    
+    If the path ends in a file extension, the parent directory is ensured.
+    Optionally clears the directory if it already exists and clear is True.
+    """
+    path = os.path.join(*path_components)
+
+    # If the last component of the path is a file (contains a dot), get its directory
+    if '.' in os.path.basename(path):
+        dir_path = os.path.dirname(path)
+
+    # Ensure the directory exists
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+    elif clear:
+        for root, dirs, files in os.walk(dir_path, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
+    return path
+
+
 '''
 Convenience method for setting up logger. 
 Must be called before logging is tarted.
