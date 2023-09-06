@@ -40,7 +40,9 @@ def join_and_make_path(*path_components: str, clear: bool = False) -> str:
     # If the last component of the path is a file (contains a dot), get its directory
     if '.' in os.path.basename(path):
         dir_path = os.path.dirname(path)
-
+    else:
+        dir_path = path
+        
     # Ensure the directory exists
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
