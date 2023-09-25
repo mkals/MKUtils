@@ -45,7 +45,10 @@ def join_and_make_path(*path_components: str, clear: bool = False) -> str:
         
     # Ensure the directory exists
     if not os.path.exists(dir_path):
-        os.makedirs(dir_path)
+        try:
+            os.makedirs(dir_path)
+        except FileExistsError:
+            pass # required, as sometimes this happens even with the check above
     elif clear:
         for root, dirs, files in os.walk(dir_path, topdown=False):
             for name in files:
