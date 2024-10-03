@@ -1,5 +1,5 @@
 from pathlib import Path
-import os, logging
+import os, logging, shutil
 
 HOME_DIRECTORY = Path.home()
 DATA_DIRECTORY = os.path.join(HOME_DIRECTORY, 'data')
@@ -12,10 +12,16 @@ def append_to_file(file, l):
 
 def clear_directory(directory):
     for f in os.listdir(directory):
+        file_path = os.path.join(directory, f)
         try:
-            os.remove(os.path.join(directory, f))
-        except:
-            logging.exception(f'Could not remove file {f}.')
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.remove(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except FileNotFoundError:
+            continue
+        except Exception as e:
+            logging.error(f'Could not remove {file_path}: {e}')
 
 def generate_directory(directory, clear=False):
     if not os.path.exists(directory):
